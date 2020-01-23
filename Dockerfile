@@ -1,7 +1,7 @@
 FROM node:12.3.1-alpine
 # Set environment variable
 ARG RUN_AS=node
-ARG HUGO_VERSION=0.56.1
+ARG HUGO_VERSION=0.63.1
 ARG HUGO_BINARY="hugo_extended_${HUGO_VERSION}_Linux-64bit"
 
 RUN apk --no-cache add ca-certificates wget \
