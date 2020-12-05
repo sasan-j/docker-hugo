@@ -4,11 +4,17 @@ ARG RUN_AS=node
 ARG HUGO_VERSION=0.79.0
 ARG HUGO_BINARY="hugo_extended_${HUGO_VERSION}_Linux-64bit"
 
-RUN apk add --update git asciidoctor libc6-compat libstdc++ \
+RUN apk add --update git asciidoctor libc6-compat libstdc++ go\
     && apk upgrade \
     && apk add --no-cache ca-certificates
 
 RUN apk update && apk add py-pygments
+
+# Configure Go
+ENV GOROOT /usr/lib/go
+ENV GOPATH /go
+ENV PATH /go/bin:$PATH
+
 # Download and install hugo
 RUN mkdir /usr/local/hugo
 ADD https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/${HUGO_BINARY}.tar.gz \
